@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    //return view('welcome');
-    return view("home");
-});
+Route::get('/', [HomeController::class, "getHome"]);
 
 Route::get('login', function () {
     return view("auth.login");
@@ -27,8 +26,8 @@ Route::get('logout', function () {
 });
 
 Route::group(['prefix' => 'productos'], function () {
-    Route::get('/', function () { return view("productos.index"); });
-    Route::get('show/{id}', function ($id) { return view("productos.show", array("id" => $id)); });
-    Route::get('create', function () { return view("productos.create"); });
-    Route::get('edit/{id}', function ($id) { return view("productos.edit", array("id" => $id)); });
+    Route::get('/', [ProductoController::class, "getIndex"]);
+    Route::get('show/{id}', [ProductoController::class, "getShow"]);
+    Route::get('create', [ProductoController::class, "getCreate"]);
+    Route::get('edit/{id}', [ProductoController::class, "getEdit"]);
 });
