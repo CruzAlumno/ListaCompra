@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
 
-        {{$producto[0]}}, {{$producto[1]}}
+        {{ $producto->nombre }}, {{ $producto->categoria }}
 
     </div>
 </div>
